@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
-    private TextView register;
+    private TextView register,textForgotPassword;
     private Button login;
     private EditText editTextEmail,editTextPassword;
     private ProgressBar progressBar;
@@ -30,13 +30,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mAuth=FirebaseAuth.getInstance();
+        FirebaseUser userId=mAuth.getCurrentUser();
+        if(userId!=null){
+            startActivity(new Intent(this,UserDashboardActivity.class));
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         register=(TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
+        textForgotPassword=(TextView) findViewById(R.id.forgotpassword);
+        textForgotPassword.setOnClickListener(this);
         login=(Button) findViewById(R.id.login);
         login.setOnClickListener(this);
+
         editTextEmail=(EditText) findViewById(R.id.email);
         editTextPassword=(EditText) findViewById(R.id.password);
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
