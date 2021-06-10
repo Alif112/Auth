@@ -34,6 +34,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         FirebaseUser userId=mAuth.getCurrentUser();
         if(userId!=null){
             startActivity(new Intent(this,UserDashboardActivity.class));
+        }else {
+
         }
 
         super.onCreate(savedInstanceState);
